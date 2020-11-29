@@ -14,15 +14,17 @@ def pairings_to_text(pairings):
     for i in range(len(pairings)):
         person1 = pairings[i][0]
         person2 = pairings[i][1]
-        f.write(person1["Name"] + " -- " + person1["Address"] + " <-----> "+ person2["Name"] + " -- " + person2["Address"] + "\n")
+        f.write(person1["Name"] + ": " + person1["Address"] + " --> "+ person2["Name"] + ": " + person2["Address"] + "\n")
     f.close()
     
 def get_pairings(items):
     i = 0
     pairings = []
-    while i < len(items):
+    while i < len(items) - 1:
         pairings.append([items[i], items[i + 1]])
-        i += 2
+        i += 1
+    ## Completing the cycle
+    pairings.append([items[len(items) - 1], items[0]])
     return pairings
     
 def sattoloCycle(items):
