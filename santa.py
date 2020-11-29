@@ -16,17 +16,17 @@ def pairings_to_text(pairings):
         person2 = pairings[i][1]
         f.write(person1["Name"] + ": " + person1["Address"] + " --> "+ person2["Name"] + ": " + person2["Address"] + "\n")
     f.close()
-    
+        
 def get_pairings(items):
     i = 0
     pairings = []
     while i < len(items) - 1:
         pairings.append([items[i], items[i + 1]])
         i += 1
-    ## Completing the cycle
+        ## Completing the cycle
     pairings.append([items[len(items) - 1], items[0]])
     return pairings
-    
+
 def sattoloCycle(items):
     for i in range(len(items) - 1, 0, -1):
         j = randrange(i)
@@ -36,16 +36,13 @@ def open_csv():
     candidates = []
     with open('santa.csv') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
-        line_count = 0
+        line_count = 1
         for row in csv_reader:
-            if line_count == 0:
-                line_count += 1
-            else:
-                candidates.append({
-                    "Name": row[1],
-                    "Address": row[2]
-                })
-                line_count += 1
+            candidates.append({
+                "Name": row[1],
+                "Address": row[2]
+            })
+            line_count += 1
     return candidates
 
 main()
